@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+*.hcl
+*.0_x5
+*.1_x5
+*.yml

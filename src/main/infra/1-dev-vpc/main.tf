@@ -62,7 +62,7 @@ module "vpc" {
   create_database_subnet_group = true
   create_database_subnet_route_table = true
   database_subnets = var.database_subnets
- database_subnet_group_tags = {
+  database_subnet_group_tags = {
   subnet_type = "database"
   }
 

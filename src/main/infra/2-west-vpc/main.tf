@@ -48,13 +48,15 @@ variable "database_subnets_london" {
 ######################
 provider "aws" {
   region = var.region_ireland
-  alias = "ireland"
+  alias = "prod_ireland"
+
 }
 
 
 provider "aws" {
   region = var.region_london
-  alias = "london"
+  alias = "prod_london"
+
 }
 
 #####################
@@ -74,18 +76,47 @@ data "aws_availability_zone" "azs_london" {
 }
 */
 
+/*
+resource "aws_iam_role" "sec_role" {
+  provider = aws.security
+  assume_role_policy = ""
+}
+*/
+
 #####################
 # DATA SOURCES
 ######################
 
-module "vpc_east" {
+module "vpc_ireland" {
   source = "terraform-aws-modules/vpc/aws"
-
-  name = "prod-vpc-east"
+  providers = {
+    aws = aws.prod_ireland
+  }
+  name = "prod-vpc-ireland"
   cidr = var.vpc_cidr_range_ireland
-  azs            = ["eu-west-2a", "eu-west-2b"]
+  azs            = ["eu-west-1a", "eu-west-1b"]
   public_subnets = var.public_subnets_ireland
 
+}
+
+module "vpc_london" {
+  source = "terraform-aws-modules/vpc/aws"
+  providers = {
+    aws = aws.prod_london
+  }
+  name = "prod-vpc-london"
+  cidr = var.vpc_cidr_range_london
+  azs            = ["eu-west-2a", "eu-west-2b"]
+  public_subnets = var.public_subnets_london
+
+}
+
+output "vpc_ireland" {
+  value = module.vpc_ireland.vpc_id
+}
+
+output "vpc_london" {
+  value = module.vpc_london
 }
 
 

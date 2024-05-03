@@ -35,3 +35,5 @@ build/
 *.0_x5
 *.1_x5
 *.yml
+/src/main/infra/2-west-vpc/.terraform.lock.hcl
+/src/main/infra/1-dev-vpc/.terraform/modules/vpc/.github/workflows/lock.yml

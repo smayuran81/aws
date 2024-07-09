@@ -31,7 +31,7 @@ on:
     branches: [ "main" ]
 
 env:
-  AWS_REGION: EU-WEST-2                        # set this to your preferred AWS region, e.g. us-west-1
+  AWS_REGION: eu-west-2                       # set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: springbootapps           # set this to your Amazon ECR repository name
   ECS_SERVICE: spring-ecr-service                 # set this to your Amazon ECS service name
   ECS_CLUSTER: Mayuran_Springboot                 # set this to your Amazon ECS cluster name

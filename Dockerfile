@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jdk-alpine
+FROM openjdk:17
 RUN apk add curl
 VOLUME /tmp
 EXPOSE 8080

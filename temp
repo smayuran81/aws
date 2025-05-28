@@ -1,0 +1,56 @@
+Here is a concise and clear **technical documentation** version of your description:
+
+---
+
+## **Service Principal Secret Retrieval via EVA Integration**
+
+### **Overview**
+
+This document outlines the process by which Azure-integrated systems retrieve secrets associated with service principals using **EVA (Enterprise Vault Automation)** and **Vault Metadata Runtime**. The operation is centered around a **Software Component Identifier (SWCI)**.
+
+---
+
+### **Process Flow**
+
+1. **EVA Integration from Azure**
+   The process begins with a completed EVA integration from the Azure environment. This integration ensures secure connectivity and authentication to the enterprise vault infrastructure.
+
+2. **Invoke Vault Metadata Runtime**
+   Once EVA is integrated, the system invokes the **Vault Metadata Runtime** service to query service principal associations. This runtime call is made at execution time to ensure up-to-date metadata.
+
+3. **Identify Service Principals for SWCI**
+   Using the provided **Software Component Identifier (SWCI)**, the Vault Metadata Runtime returns a list of all service principals linked to the specified component. These service principals represent identities used by the component to access Azure resources.
+
+4. **Iterate and Retrieve Secrets**
+   For each service principal retrieved:
+
+   * Query the vault for the associated secret (such as a client secret or certificate).
+   * Ensure secure handling and usage of the secret in the runtime environment.
+
+---
+
+### **Security Considerations**
+
+* All communication with EVA and Vault is secured via mutual TLS (mTLS) and/or Azure-managed identity authentication.
+* Secrets are never stored in logs or local files and are used strictly in-memory during runtime.
+* Access control policies must ensure only authorized applications can invoke the metadata runtime and retrieve secrets.
+
+---
+
+### **Diagram (Optional)**
+
+```
+Azure App
+   |
+   |--> EVA Integration
+          |
+          |--> Vault Metadata Runtime
+                  |
+                  |--> Retrieve Service Principals for SWCI
+                          |
+                          |--> For each SP, get secret from Vault
+```
+
+---
+
+Let me know if you'd like to add a [sequence diagram](f) or [code integration sample](f) for this process.
